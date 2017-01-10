@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<html>
+<head>
+<title>WIKIPEDIA search</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 "> <!--device ko anusaar device ko width laai lii vaneko-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <!--bootstrap link --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> <!-- jquery --> 
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> <!-- javascript --> 
+<link rel="stylesheet" type="text/css" media="all" href="style.css" /> <!-- link to css-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/> <!-- Font Awesome Icons -->
+
+<script>
+	$(document).ready(function(){ // for searching texts
+
+		$("#search").hover(function(){
+			$("#search").animate({ "zoom": 1.5 }, 100); // when the mouse is hover, it zooms.
+			},function(){
+				$("#search").animate({ "zoom": 1 }, 100); // when the mouse is hover, it zooms.
+		});	
+			
+		$("#search").on("keypress",function(e){
+			
+			if(e.which==13){ // when pressed enter from keyboard
+				//$('#searchresult').html('<div>' + $(this).val() ); //working for search value to put in div
+				
+				$("#wikilogo").hide();
+				$("#result").show();
+				$("#result").html("Wiki Search Result");
+				$("#randomheader").html("<h2>Wiki Search result</h2>");//random header hide
+				$("#random").hide(); // randome results hide
+				$("#target").css("background-color","gray");
+				var txt=$('#search').val(); // get the value searching for
+				$('#searchresult').html($(this).val());
+				$(this).val('');
+					$.getJSON("http://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch="+txt+"&callback=?", function(data){ // fetching JSON api
+						var Str="";
+							//$("#json").html(JSON.stringify(data)); // Fetching Json file for repair purpose
+							var arr=[];
+							for(var key in data.query.pages){
+								arr.push(key);
+							}
+							arr=arr.join(" ");
+							Str=arr.toString(); // converting array to string format
+							Str=Str.split(" "); // Splitting string Str by space
+
+							for(var i =0; i<Str.length; i++){// Fetching the Contents from the API
+
+
+							    $('#target').append('<div id="r'+ i +'"></div>');// Create 10 Div element  with id r1 to r10
+							    //$("#r"+encodeURIComponent(i)).addClass("well");// Setting div css margin
+							    //$('.well').css("background-color","gray");
+							    $("#r"+encodeURIComponent(i)).css("margin",20+"px");// Setting div css margin
+							    $("#r"+encodeURIComponent(i)).css("color","black");
+								$("#r"+encodeURIComponent(i)).html(i+1+". "+"<a target=\"blank\"href=\"https://en.wikipedia.org/?curid="+encodeURIComponent(Str[i])+"\" >"+ data.query.pages[Str[i]].title +" "+data.query.pages[Str[i]].extract +"</a> ");	
+						}
+					
+				});
+				
+			} // end of keyboard entered==13. when enter is hit.
+		
+		});	// key press function ends here
+
+		$("button").click(function(){
+			$.getJSON("https://en.wikipedia.org/w/api.php?format=json&action=query&list=random&rnlimit=1&callback=?",function(data){
+				var id=data.query.random[0].id;
+				//$("#test").html(JSON.stringify(data));NOT in USE
+				$("#result").hide();
+				$("#target").css("background-color","white"); // background color of jumbotron to white when enter the button(random)
+				$('#target').html('<div id="randomheader"></div>');
+				$("#randomheader").append("<h2>Random search result</h2>")
+				$("#randomheader").addClass("text-center");
+				$('#target').append('<div id="random"></div>');
+				$("#random").addClass("text-center");
+				$("#random").append("<a target=\"blank\"href=\"https://en.wikipedia.org/?curid="+encodeURIComponent(id)+"\" >"+ data.query.random[0].title+"</a> ");
+
+			});
+		});
+	
+	});
+
+
+</script>
+
+</head>
+<body>
+<div class="container-fluid">
+		
+		<h1 class="text-center" >WIKIPEDIA SEARCH</h1>
+	<div class="text-center">
+		<h3 style="display:inline" >Random Search :</h3>
+		<button class="btn btn-default">Random Search</button>
+	</div>
+	<h3 class="text-center">Type and Enter to Search:</h3>
+		<div  class="text-center"> <!-- input type text for search field-->
+			<input  type="text" placeholder=" &#xF002;" style="font-family:FontAwesome" id="search" autocomplete="off"> <!-- auto complete off from search history-->
+		</div>
+	<br>
+	<div id="searchresult" style="color:white;font-weight:bold" class="text-center"></div> <!-- Word enterd by the user is displayed here-->
+	<br>
+	<div id="target" class="jumbotron">
+		<!-- all divs should append here -->
+		<h1 id="nothing"></h1>
+		<img id="wikilogo" src="https://d.ibtimes.co.uk/en/full/1473922/wikipedia-logo.jpg" style="max-height:500px;" class="img-responsive" attr="This is wikipedia image logo">
+		<p style="font-size:25px;margin:20px;font-weight:bold;"id="result" class="text-center"></p> <!-- Results  heading -->
+	</div>
+	<footer>
+		<h4 style="float:left;margin-left:10px"><a style="color:white" href="http://codepen.io/haria/full/YqzPpN/" target="_blank">Contact</a> </h4> 
+		<h4 style="font-size:14px">CopyRight &copy;: Haria</h4>
+	</footer>
+		
+</div>
+</body>
+</html>
