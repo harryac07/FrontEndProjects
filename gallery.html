@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Photo Gallery</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1 "> <!--device ko anusaar device ko width laai lii vaneko-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script><!--jquery easing plugin-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/> <!-- Font Awesome Icons -->
+<!--easier one here with links-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.4.33/example1/colorbox.min.css"> <!--Jquery colorbox pugin css for photo display-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.4.33/jquery.colorbox-min.js"></script><!--Jquery colorbox pugin JS for photo display-->
+ <!-- google map API for extracting google map-->
+ <!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBXx4T2s3reGI003x-VdRVx_qciargAIVQ"></script> -->
+ <style>
+   #footer{
+    background-color: black;
+    width: 100%;
+
+ }
+ </style>
+
+  <script> // jquery script starts here
+    $(document).ready( function() {
+
+        mobileResize(); // it happens when document is ready
+      $('a[rel=mypic]').colorbox({ // photo display using color box plugin
+          transition: 'elastic', // could be "fade", "elastic" or none
+          speed: 800,
+          current: "{current} of {total} Photos", // to display on top of pic
+          maxHeight: 600, 
+          maxWidth: $(document).width(),
+          overlayClose:true,
+          opacity:0.85
+      });
+
+        function mobileResize(){
+          var width = $(document).width();
+          var height = $(window).innerHeight();
+          var screen_height = screen.height;
+
+              if(width>=800){ // for desktop view
+                  $('a[rel=mypic] img').css({
+                    "height":"auto",
+                    "max-width":"350px"
+                  });
+                 // $('a[rel=mypic]').css("padding-left","25px");
+                  $('#about,#home,#portfolio,#contact').css("height",screen_height);
+
+              }
+
+
+          if(width<=450){ // for mobile view
+              $('a[rel=mypic]').css({
+                  "height":"auto",
+                  "padding-left":"0px",
+                  "margin":"0px 0px 0px 0px"
+                  });
+              $('a[rel=mypic] img').css({ // image setting for mobile
+                "height":"auto",
+                "margin":"0px"
+              });
+              
+          }
+
+          if(width>400 && width<=768){
+              $('a[rel=mypic] img').css({ // image setting for tabs
+                "height":"auto",
+                "width" : width,
+                "margin":"0px"
+              });
+              //$('a[rel=mypic]').css("width");
+          }
+
+      }
+      $("nav a").hover(function(){
+        $(this).css("background-color","gray");
+      },function(){
+        $(this).css("background-color","");
+      });
+
+
+    });
+    </script>
+
+  </head>
+  <body>
+      <div class="container-fluid" style="background-color: #336699;">
+         <nav  id="nav" class="nav navbar-inverse navbar-fixed-top"> <!-- for navigation bar-->
+            <div id="name" class="navbar-header">
+                <a style="color:white"class="navbar-brand" href="file:///Users/Harry/Documents/Jquery%20Ninja%20Practice/portfolio/portfolio.html#portfolio">Back <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+            </div>
+
+        </nav>
+
+          <h1 class="text-center" style="color: #b3b3b3;text-shadow:2px 2px #993333;font-weight:bold;padding-top: 50px;">My Gallery</h1>
+          <br><br>
+          <div class="well">
+                <a rel="mypic" href="https://lh3.googleusercontent.com/--GFw48HBSvk/VtR8ckRKFHI/AAAAAAAAAEE/Utm-Nb0BSKM/w426-h320/DSC09464.JPG.jpg"><img class="img-thumbnail" src="https://lh3.googleusercontent.com/--GFw48HBSvk/VtR8ckRKFHI/AAAAAAAAAEE/Utm-Nb0BSKM/w426-h320/DSC09464.JPG" ></a>
+                <a rel="mypic" href="http://users.metropolia.fi/~haria/image/me.jpg"> <img class="img-thumbnail" src="http://users.metropolia.fi/~haria/image/me.jpg"></a> 
+                <a rel="mypic" href="https://lh3.googleusercontent.com/--WF6OinOnKc/VtR7Txz9TiI/AAAAAAAAADg/sYYwd4HaVKo/w426-h320/mee.JPG"><img class="img-thumbnail"  src="https://lh3.googleusercontent.com/--WF6OinOnKc/VtR7Txz9TiI/AAAAAAAAADg/sYYwd4HaVKo/w426-h320/mee.JPG" ></a>
+                <a rel="mypic" href="https://lh3.googleusercontent.com/-5AzOgJ_rUug/V17NZjTzkbI/AAAAAAAAAFI/qS9JmK15I8giUPWcpbTKFaaNd338KbMIgCL0B/w426-h284/13445913_1105547466185860_56902290_o.jpg"><img class="img-thumbnail"  src="https://lh3.googleusercontent.com/-5AzOgJ_rUug/V17NZjTzkbI/AAAAAAAAAFI/qS9JmK15I8giUPWcpbTKFaaNd338KbMIgCL0B/w426-h284/13445913_1105547466185860_56902290_o.jpg" ></a>
+
+                <a rel="mypic" href="https://lh3.googleusercontent.com/--WF6OinOnKc/VtR7Txz9TiI/AAAAAAAAADg/sYYwd4HaVKo/w426-h320/mee.JPG"><img class="img-thumbnail"  src="https://lh3.googleusercontent.com/--WF6OinOnKc/VtR7Txz9TiI/AAAAAAAAADg/sYYwd4HaVKo/w426-h320/mee.JPG" ></a>             
+          </div>
+          
+      </div>
+      <div id="footer" class=" container text-center" style="background-color:black">
+            <p style="color:white;font-size:18px">
+               copyright &copy; : Hari Adhikari.
+            </p>
+      </div>
+  </body>
+  </html>

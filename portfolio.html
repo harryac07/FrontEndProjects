@@ -1,0 +1,506 @@
+<!-- Personal Portfolio-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Haria Portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1 "> <!--device ko anusaar device ko width laai lii vaneko-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script><!--jquery easing plugin-->
+  <link rel="stylesheet" href="jquery-ui.min.css"><!--Jquery UI library-->
+<script src="jquery-ui.min.js"></script><!--Jquery UI library-->
+
+<link rel="stylesheet" type="text/css" href="http://jscrollpane.kelvinluck.com/style/jquery.jscrollpane.css" /><!--jscrollpane plugin for custom scroll bar(all 4 below)-->
+<script type="text/javascript" src="http://jscrollpane.kelvinluck.com/script/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
+
+  <script src="http://cdn.jsdelivr.net/jquery.color-animation/1/mainfile"></script> <!-- color animations -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"></script><!--Jquery Scroll to Plugin-->
+  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" media="all" href="style1.css" />
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/> <!-- Font Awesome Icons -->
+  <!--Jquery colorbox pugin for photo display from files-->
+<!--<link rel="stylesheet" href="colorbox.css" type="text/css">
+<script src="jquery.colorbox-min.js" type="text/javascript"></script>-->
+<!--easier one here with links-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.4.33/example1/colorbox.min.css"> <!--Jquery colorbox pugin css for photo display-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.4.33/jquery.colorbox-min.js"></script><!--Jquery colorbox pugin JS for photo display-->
+ <script src="http://maps.googleapis.com/maps/api/js"></script>
+ <style>
+
+    *{
+        line-height: 1.5em;
+    }
+    #navigation{
+        background: linear-gradient(to left, #5A3F37 , #2C7744);
+    }
+    #home{
+        background: linear-gradient(to left, #5A3F37 , #2C7744);
+    }
+    #portfolio{
+        background: linear-gradient(to left, #134E5E , #71B280);
+    }
+    #contact{
+        background:linear-gradient(to left, #000000 , #434343);
+    }
+    h1{
+        text-shadow:2px 3px #993333;
+        padding-top: 10px;
+        color: #cdefff;
+    }
+    h2{
+        color:black;
+        font-weight:bold;
+    }
+    .navbar-inverse{
+        z-index:1;
+        top:0px;
+        background-color: rgb(0,0,0,0.8);
+    }
+    #navheader_name a:hover{
+        background-color: gray;
+    }
+
+    #myNav ul li a:hover{
+        display:inline-block;
+        text-decoration:none;
+        background-color: gray;
+    }  
+    hr{
+        border: 0px solid; 
+        border-top: 2px solid;
+        border-bottom: 2px solid black;
+        border-color:black!important;
+        margin-top: 20px;
+        width: 80% ;
+
+
+    } 
+    .circle:hover{
+        background: white;
+    } 
+    #form{
+        margin: 0 auto;
+        padding: 0 30px 0 30px;
+    }
+    #footer{
+        width: 100%;
+        background:black;
+    }
+    #endLink:hover{
+        color: #cdefff;
+    }
+    #endLink{
+        text-decoration: none;
+    }
+    #button-job span{
+        display:inline-block;
+        width:110px;
+        height:50px;
+        border:2px solid white;
+        border-radius:8%;
+        background:white;
+        line-height:40px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    #portfolio_underdevelop span{
+        display:inline;
+        width:auto;
+        height:auto;
+        border:3px solid black;
+        border-radius:8%;
+        background: #8E0E00; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #8E0E00 , #1F1C18); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #8E0E00 , #1F1C18); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        line-height:40px;
+        font-size: 20px;
+        font-weight: bold;
+        color:#D2D7D3;
+    }
+    #button-job span :hover{
+        background: gray;
+    }
+    @media only screen and (max-width: 350px) {
+        #button-job span {
+            width:90px;
+            height:40px;
+        }
+    }
+    #backtopButton-link{
+        text-decoration: none;
+        display: none;
+        z-index: 100;
+        bottom: 0;
+        right: 0;
+        position: fixed;
+        margin-right: 15px;
+        width: 50px;
+        height: 50px;
+
+    }
+   /* nav a{
+      font-size: 15px;
+    }*/
+ </style>
+
+ <script> 
+    $(document).ready(function() {
+        /* tabs in portfolio */
+      $( "#tabs" ).tabs({
+        active:0
+      }); // using jquery UI for tabs in portfolio
+      $( "#tabs" ).css({
+        "background-color":"inherit",
+        "height":"auto"
+
+      });
+
+    $('a[rel=mypic]').colorbox({ // photo display using color box plugin
+          transition: 'elastic', // could be "fade", "elastic" or none
+          speed: 800,
+          current: "{current} of {total} Photos", // to display on top of pic
+          maxHeight: 600, 
+          maxWidth: $(document).width(),
+          overlayClose:true,
+          opacity:0.85
+      });
+    $("#port-btn,#home-btn,#contact-btn").click(function(){
+        $("html, body").animate({
+        scrollTop: $( $(this).attr('href') ).offset().top}, 800,'easeInCubic'); // animating using scrollTop plugin while clicking button. It goes to top of the id div
+        $("#port-btn,#home-btn,#contact-btn").css("background-color",""); // remove highlight from others
+        $(this).css("background-color","green");// add highlights to current one
+          $('.navbar-collapse').click();  // toggle to this class when click
+          $('.navbar-toggle').click(); // toggle on click
+        return false;
+    });
+    $("#endLink").click(function(){ // scroll to the top while clicked endlink Home 
+        $("html, body").animate({
+        scrollTop: $( $(this).attr('href') ).offset().top}, 800,'easeInCubic'); // animating using scrollTop plugin while clicking button. It goes to top of the id div
+        return false;
+    });
+      
+    /*Back-top-arrow set up */
+    $(document).scroll(function(){
+        if($(window).scrollTop()>300){
+          $("#backtopButton-link").fadeIn(300);
+        }else{
+          $("#backtopButton-link").fadeOut(300);
+        }
+        
+    });
+    //scroll to active the tabs
+
+    $(document).scroll(function(){
+
+        var x=($(document).scrollTop());
+        if ( x<1200 && x>460) { 
+            $("#home-btn,#contact-btn").css("background-color",""); // remove highlight from others
+            $('#port-btn').css({"background":"green"});
+            return false;
+        }
+        if (x<460 && x>=0) { 
+            $("#port-btn,#contact-btn").css("background-color",""); // remove highlight from others
+            $('#home-btn').css({"background":"green"});
+            return false;
+        }else{
+            $("#port-btn,#home-btn").css("background-color",""); // remove highlight from others
+            $('#contact-btn').css({"background":"green"});            
+        }
+        
+    });
+    //bouncing of bottom at right which appeared after scroll
+    setInterval(function(){
+          if($(window).scrollTop()>300){
+            $("#backtopButton-link").effect('bounce', {times: 2}, 500);
+          }
+        
+    },2000);
+
+    $("#backtopButton-link").click(function(e){ // scroll to the top while clicked endlink Home 
+        e.preventDefault();
+        $("html, body").animate({ // or simply {scrollTop:0}
+        scrollTop: $( $(this).attr('href') ).offset().top}, 800,'easeInQuart'); // animating using scrollTop plugin while clicking button. It goes to top of the id div
+
+        return false;
+    });
+
+    //mailto giving action
+    $("form").submit(function(){
+        $("form").prop ('action','mailto:hari.adhikari@metropolia.fi?subject='+$("#name").val()+'&amp;body=hi'+$("#comment").val());
+    });
+
+    /* Form Styling*/
+    $("form input,textarea").focusin(function(){
+        $(this).css("background","gray");
+    });
+    $("form input,textarea").focusout(function(){
+        $(this).css("background","");
+    });
+    //green circle dissappear in mobile devices
+    if($(document).width()<400){
+        $("#green-circle").hide();
+    }else{
+        $("#green-circle").show('fast');
+    }
+
+
+    });//document ready ends here
+</script>
+</head>
+<body>
+    <div id="navigation">
+        <nav class="nav navbar-inverse navbar-fixed-top"><!-- navbar starts here -->
+          <div class="container-fluid">
+            <div id="navheader_name" class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNav">
+                    <span class="icon-bar"></span> <!-- horizontal bar line in toggle button in navbar-->
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a style="color:white"class="navbar-brand">Hari Adhikari</a>
+            </div>
+            
+            <ul class="nav navbar-nav" id="green-circle">
+              <li class="active"><div id="nav-circle" style="background-color:green;border-radius:50%;height:50px;width:50px;text-align:center"><p style="padding-top:17px">Hi</p></div></li>
+            </ul>
+
+            <div class="collapse navbar-collapse" id="myNav">
+                <ul id="box" class="nav navbar-nav navbar-right">
+                    <li><a id="home-btn" data-toggle="collapse" data-target=".navbar-collapse"style="color:white" href="#navigation">Home</a></li>
+                    <li><a id="port-btn" data-toggle="collapse" data-target=".navbar-collapse" style="color:white"href="#portfolio">Portfolio</a></li>
+                    <li><a id="contact-btn" data-toggle="collapse" data-target=".navbar-collapse"style="color:white" href="#contact">Contact</a></li>
+                    <li>
+                        <a  data-toggle="collapse" data-target=".navbar-collapse" style="color:white" href="http://codepen.io/haria/full/dMWZWq/" target="_blank">Check Weather 
+                            <i class="fa fa-cloud"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a  data-toggle="collapse" data-target=".navbar-collapse" style="color:white" href="http://codepen.io/haria/full/jqaRMg/" target="_blank">Wikipedia 
+                            <i class="fa fa-wikipedia-w"></i>
+                        </a>
+                    </li>               
+                    <!--<li class="dropdown" id="dropit">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span style="font-weight:bold;color:white">Menu</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="list-nav-home" class="dropdown-menu">
+
+                            <li><a id="home-btn" data-toggle="collapse" data-target=".navbar-collapse" href="#navigation">Home</a></li>
+                            <li><a id="port-btn" data-toggle="collapse" data-target=".navbar-collapse" href="#portfolio">Portfolio</a></li>
+                            <li><a id="contact-btn" data-toggle="collapse" data-target=".navbar-collapse" href="#contact">Contact</a></li>
+                        </ul>
+                    </li>-->
+                </ul>
+            </div>
+          </div><!--container fluid ends here-->
+        </nav> <!-- navbar Ends here here -->
+        <br><br>
+        
+        <center><h1 style="padding-top:80px">The Adventures for Front End design. To master,<br> and develop creative UI.</h1></center>
+        
+          <center> <!-- job search buttons centralize-->
+              <div id="button-job">
+               <i style="font-size:30px;color:black;" class="fa fa-caret-right" aria-hidden="true"></i>
+               <span>Explore</span>
+               <span>Connect</span>
+               <i style="font-size:30px;color:black" class="fa fa-caret-left" aria-hidden="true"></i>
+              </div>
+          </center>
+        
+    </div><!--Navigation ends here-->
+
+    <div class="container" id="home">
+        
+        <br><br>
+        <hr> <!--horizontal line -->
+            <div class ="text-center">
+              
+                <div  id="about-link1" class="circle" style="margin:0px 10px 0px 0px;width:52px;height:52px;;border:3px solid black;border-radius:50%;display:inline-block">
+                        <a href="https://www.facebook.com/hurriee" target="blank"><i style="font-size:40px;padding-top:5px;line-height:35px" class="fa fa-facebook "></i></a>
+                </div>
+                <div id="about-link2"  class="circle" style="margin:0px 10px 0px 0px;width:52px;height:52px;;border:3px solid black;border-radius:50%;display:inline-block">
+                    <a href="mailto:harry_ac07@yahoo.com"><i style="font-size:40px;color:blue;padding-top:5px;line-height:35px" class="fa fa-yahoo"></i></a>
+                </div>
+                <div id="about-link3"  class="circle" style="margin:0px 10px 0px 0px;width:52px;height:52px;border:3px solid black;border-radius:50%;display:inline-block">
+                    <a href="mailto:hari.adhikari@metropolia.fi"><i style="font-size:40px;color:red;padding-top:5px;line-height:35px;" class="fa fa-envelope"></i></a>
+                </div>
+                      
+                
+                <div class="row">
+                          <div class="col-sm-8"> 
+                            <h2 style="color:black;text-align: justify;text-shadow:2px 1px #cdefff;">My Info</h2>          
+                            <h4 style="color:black;font-weight:bold;text-align: justify"> 
+                              Hello all. This is Hari
+                              I am a beginner for Web development. I am studying IT in Metropolia University in Finland. I am also taking course in Freecodecap.com.This site has inspired me a lot. Hopefully, I will be coding like a pro in few months. You can check my portfolio and also visit my links to watch my latest updates.
+                              Please feel free to contact. <br>
+                              Haria
+                            </h4>
+                            <div>
+                                <hr style="width:10%;display:inline">
+                                <h2 style="color:#cdefff;display:inline">
+                                    Web Developer- UX Designer    
+                                </h2>
+                                <hr style="width:10%;display:inline">
+                            </div>
+                        </div>
+                      <div class="col-sm-4">  <!-- colorbox plugin is used here for pic display-->
+                          <center><img id="about-img" src="http://api.ning.com/files/MxNsJOqnUBcT-u2ZD7oPJFwVY1c8kXo43RATF2PkJrrIYr40hFA-l6NMYXqk0HM84ljy9CwUp*4GI5YLMAPf6uq614tUdABu/thesketch.jpg"  class="img-responsive" style="border-radius:50%"></center>
+                      </div>
+                    
+                </div><!--row ends here-->
+              
+            </div><!--text-center ends here-->
+
+    </div><!--first container ends here: about me-->
+
+    <div class="container" id="portfolio">
+        <div class ="text-center">
+          <h1 id="port" style="padding-top:20px">My Portfolio</h1>
+        </div>
+
+        <div id="tabs">
+            <ul>
+                <li><a href="#tab1">Photo Gallery</a></li>
+                <li><a href="#tab2">Skills </a></li>
+                <li><a href="#tab3">Portfolio</a></li>
+            </ul>
+
+                  <div id="tab1" style="color:black" class="text-center">
+                        <div class=row>
+                            <center>
+                                <button style="background-color:#66ccff;" id="portImage-gallery-btn"class="btn btn-default">
+                                    <a style="text-decoration:none;font-weight:bold" href="file:///Users/Harry/Documents/Jquery%20Ninja%20Practice/portfolio/gallery.html">More Pic</a>
+                                </button>
+                            </center>
+                              <br>
+                            <div class="col-sm-4">
+                                    <a rel="mypic" href="https://lh3.googleusercontent.com/--GFw48HBSvk/VtR8ckRKFHI/AAAAAAAAAEE/Utm-Nb0BSKM/w426-h320/DSC09464.JPG.jpg"><img class="img-responsive" src="https://lh3.googleusercontent.com/--GFw48HBSvk/VtR8ckRKFHI/AAAAAAAAAEE/Utm-Nb0BSKM/w426-h320/DSC09464.JPG" ></a>
+                            </div>
+                            <div class="col-sm-4">
+                                <a rel="mypic" href="http://users.metropolia.fi/~haria/image/me.jpg"> <img class="img-responsive" src="http://users.metropolia.fi/~haria/image/me.jpg"></a> 
+                            </div>
+                            <div class="col-sm-4">
+                                <a rel="mypic" href="https://lh3.googleusercontent.com/--WF6OinOnKc/VtR7Txz9TiI/AAAAAAAAADg/sYYwd4HaVKo/w426-h320/mee.JPG"><img class="img-responsive"  src="https://lh3.googleusercontent.com/--WF6OinOnKc/VtR7Txz9TiI/AAAAAAAAADg/sYYwd4HaVKo/w426-h320/mee.JPG" ></a>
+                            </div>                              
+                        </div>
+                        <div id="portfolio_underdevelop">
+                            <h3>A real Portfolio under Construction</h3>
+                            <br>
+                            <span>HTML5/CSS3</span>
+                            <span>JQuery/AjAX</span>
+                            <span>PHP</span>
+                            <span>MySQL</span><br><div></div>
+                            <span>Bootstrap 3</span>
+                            <span>JQuery UI</span>
+
+                        </div>
+                  </div>
+                  <div id="tab2">
+                      <h2 style="color:#202020;font-weight:bold">My Skills as a developer:</h2>
+                      <ul style="font-size:20px;color:black">
+                          <li>HTML5/CSS3/JavaScript</li>
+                          <li>JQuery/Jquery Mobile/Ajax/JQuery UI</li>
+                          <li>PHP & MySQL for database Management</li>
+                          <li>JAVA</li>
+                          <li>Software Design: Usecase, Class, Sequence, Activity and so on.</li>
+                      </ul>
+                  </div>
+                  <div id="tab3">
+                      <center><h2 style='font-family:"Comic Sans MS", cursive, sans-serif;color:#202020;font-weight:bold'>Professional Developer Portfolio</h2></center>
+                      <center><h3 style='font-family:"Comic Sans MS", cursive, sans-serif;color:red;'>Career begins..... Now</h3></center>
+
+                      <div style="width:inherit;background-color:white;border:0px;" class="text-center">
+                          <div style="width:30.33%;display:inline">
+                            <p id="h1-tab3" style="color:black;font-size:25px;text-align:center">< Code >....</p>
+                          </div>
+
+                          <div style="width:30.33%;display:inline">
+                             <center><img id="img-portfolio-tab3" class="img-responsive"  src="http://simpledeveloper.com/wp-content/uploads/2013/07/software-developer-success.jpg" ></center>
+                          </div>  
+
+                          <div style="width:30%;display:inline">
+                             <p id="h2-tab3" style="color:black;font-size:45px">& Be <span style="color:aqua;text-shadow:2px 2px red;font-family:"Comic Sans MS", cursive, sans-serif;">Happy</span> </p>
+                          </div>                     
+                      </div>
+                  </div>    
+        </div><!--end of tabs-->
+    </div><!--second container: portfolio-->
+    <div id="contact" class="container">
+        <h1 style="text-align:center">Contact</h1>        
+        <br><br>
+        <div class="text-center">
+            <div id="about-link1" class="circle" style="margin:0px 10px 0px 0px;width:52px;height:52px;;border:3px solid #cdefff;border-radius:50%;display:inline-block">
+                <a href="https://www.facebook.com/hurriee" target="blank"><i style="font-size:40px;padding-top:5px;line-height:35px" class="fa fa-facebook "></i></a>
+            </div>
+            <div id="about-link2"  class="circle" style="margin:0px 10px 0px 0px;width:52px;height:52px;;border:3px solid #cdefff;border-radius:50%;display:inline-block">
+                 <a href="mailto:harry_ac07@yahoo.com"><i style="font-size:40px;color:blue;padding-top:5px;line-height:35px" class="fa fa-yahoo"></i></a>
+            </div>
+            <div id="about-link2"  class="circle" style="margin:0px 10px 0px 0px;width:52px;height:52px;;border:3px solid #cdefff;border-radius:50%;display:inline-block">
+                 <a href="https://www.linkedin.com/in/hari-adhikari-6a149098?trk=nav_responsive_tab_profile" target="_blank"><i style="font-size:40px;color:blue;padding-top:5px;line-height:35px" class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </div>            
+            <div id="about-link3"  class="circle" style="margin:0px 10px 0px 0px;width:52px;height:52px;border:3px solid #cdefff;border-radius:50%;display:inline-block">
+                <a href="mailto:hari.adhikari@metropolia.fi"><i style="font-size:40px;color:red;padding-top:5px;line-height:35px" class="fa fa-envelope"></i></a>
+            </div>
+
+        </div>
+        <div class="row">
+            <div id="form" class="col-sm-6 text-center" style="color:red;text-align:left">
+                <form role="form"  method="post" enctype="text/plain">
+                    <h2 style="text-align:center;color:#cdefff">Message Me:</h2>
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Name">
+                    </div>                   
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" name="phone number"id="phone" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control"name="comment" rows="5" id="comment" placeholder="write Feedback here...."></textarea>
+                    </div>
+                    <button style="background:#66ccff" type="submit"id="submit" class="btn btn-default">Submit</button>
+                </form>
+                <br>
+            </div>
+            <div class="col-sm-6" style="color:white;text-align:center">
+                    <h2 style="color: #cdefff">
+                        Get in Touch!
+                    </h2>
+                    <h4>
+                        Want to get in touch with me? Try with various means given below. You can also send feedback or message me about any professional stuffs. Please feel free and drop me an envelop any time.
+                    </h4>
+                    <address>
+                    <h4 style="color:#cdefff">Hari Adhikari</h4>
+                        <span style="color:gray;font-size:18px">
+                            Vieraskuja 5 A 11 <br>
+                            02770, Espoo<br>
+                            Finland
+                        </span>
+                </address>
+            </div>
+        </div>
+
+        <a id="backtopButton-link" href="#navigation" style="padding-left:15px">
+            <i style="color:green;font-size:50px" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+        </a>
+
+    </div> <!-- container for contact closes here -->
+
+        
+    <div id="footer" class=" container text-center">
+        <h3 id="endLink-heading"><a id="endLink" href="#navigation">Home</a></h3>
+        <p style="color:#cdefff;font-size:13px">
+            copyright &copy; 2014: haria. All Rights Reserved.
+        </p>
+    </div>
+
+
+
+
+</body>
+</html>
