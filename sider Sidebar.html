@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.light.min.css">
+
+</head>
+<body>
+				 
+					<!-- THIS IS THE LINK FOR SIDR FUNCTION --> 
+					 
+					
+		<a id="simple-menu" href="#sidr">Toggle menu</a>
+		<div id="sidr">
+		  <!-- Your content -->
+		  <ul>
+		    <li><a href="#">List 1</a></li>
+		    <li class="active"><a href="#">List 2</a></li>
+		    <li><a href="#">List 3</a></li>
+		  </ul>
+		</div>
+	
+	
+	<!--  IT ENDS HERE SO  -->
+	
+	
+
+<!--  THIS IS THE CODE FOR THE SIDR FUNCTION -->
+	<script src="https://cdn.jsdelivr.net/jquery/2.2.0/jquery.min.js"></script>
+	<!-- Including the Sidr JS -->
+	<script src="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/jquery.sidr.min.js"></script>
+	<script>
+		$(document).ready(function() {
+		  	$('#simple-menu').sidr();
+		});
+	</script>
+</body>
+</html>

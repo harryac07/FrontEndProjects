@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<html>
+<head>
+<title>Twitch TV</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!--device ko anusaar device ko width laai lii vaneko-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <!--bootstrap link --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> <!-- jquery --> 
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> <!-- javascript --> 
+<link rel="stylesheet" type="text/css" media="all" href="style.css" /> <!-- link to css-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/> <!-- Font Awesome Icons -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.dark.min.css"><!-- for Side bar sidr plugin-->
+
+	<script>
+	window.match="";
+	//var j=0;
+	var channelArray=[];
+	var onlineArray=[];
+	var onlineStatus=[];
+	var test=[]; // to be deleted
+	var array={
+		0:"freecodecamp",
+		1: "storbeck",
+		2: "comster404",
+		3: "voyboy",
+		4: "terakilobyte",
+		5: "medrybw", // channel that streams 24/7
+		6: "hsdogdog",
+		7: "nl_kripp",
+		8: "imaqtpie",
+		9: "brunofin",
+		10: "aphromoo"
+
+	};
+		$(document).ready(function(){
+			
+			var height=$(window).height();
+			var windowWidth=$(document).width();
+				$(window).bind("load resize", function(){
+					$(".jumbotron").css("height","auto");
+
+						if(windowWidth<400){
+							$("#home").css("margin-top","25px");
+						}else{
+							$("#home").css("margin-top","15px");
+						}
+				});
+
+				$(window).on("load", function(){
+
+					$(main); // calls main function when window is loaded
+
+				});
+
+				for(var i=0;i<Object.keys(array).length;i++){ // creating well and divs for channels
+					//var random= Math.floor(Math.random()*i)+1;
+					//console.log(random);
+					$('#col').append('<div id="r'+ i +'"></div>');// Create 10 Div element  with id r1 to r10
+					$("#r"+encodeURIComponent(i)).addClass("well");// Setting div css margin
+					$(".well").css("background-color","gray");
+					$(".well").css("margin","0px");
+					$(".well").css("height","auto");
+					$("#r"+encodeURIComponent(i)).append("<span style="+"font-size:20px"+">"+array[i]+"<span>");
+
+					
+				}
+
+			function main(){ // main functions for all channels handling
+
+					$.each( array, function( key, value ) { // another way to see online array using each loop
+						$.getJSON("https://api.twitch.tv/kraken/streams/"+value,function(a){
+							if(a.stream==null){
+							}else{ // if online
+								onlineArray.push(value); // push online streams to online array
+
+							}
+							
+						});
+					}); // another way closes here
+					
+
+				$.getJSON("https://api.twitch.tv/kraken/streams",function(data){
+					for(var i=0;i<data.streams.length;i++){
+						channelArray.push(data.streams[i].channel.name);
+					}
+					for(var j=0;j<Object.keys(array).length;j++){
+						for(var k=0;k<channelArray.length;k++){
+							if(array[j]==channelArray[k]){
+								onlineArray.push(array[j]); // channels which are online and available in our array pushed to onlineArray
+
+							}
+						}
+					}
+											
+				}); // first json fetching process ends here
+				$.getJSON("https://api.twitch.tv/kraken/streams/",function(e){
+					for(var i=0;i<e.streams.length;i++){
+						for(var k=0;k<onlineArray.length;k++){
+								//if(array[i]===onlineArray[k]){
+									if((onlineArray[k])=== $("#r"+i).text()){// if texts in well matches to the channels that are online prints below:
+										$("#r"+i).append("<br>"+'<span style="color:black;font-size:13px">'+e.streams[i].channel.status+'</span>'+'<span style="float:right">Online <img src="http://www.customerparadigm.com/images/seo/Green-Box.jpg" height="15px" width=15px></span>'); // and prints status of the channel
+										$(("#r"+i+":contains("+array[i]+")")).html(function(_, text) { // function to wrap string to anchor (url link) only to the channel 
+										    var url = text.match(array[i]);
+										    $.each(url, function(i, v) {
+										        text = text.replace(v, '<a target="_blank" href=https://www.twitch.tv/' + v + '>' + v + '</a>');        
+										    });
+										    return text;
+										});// function to wrap anchor ends here
+
+									}
+
+										
+								//}
+
+						}
+					}
+					$.each(array, function(i, a1val) { // check if offline to put offline 
+
+						if ($.inArray(a1val, onlineArray) === -1) {   // find the unmatched from online array and our objects values
+							$("#r"+i).append('<span style="float:right">Offline <span style="color:red"><i class="fa fa-exclamation" aria-hidden="true"></i></span></span>');	        
+						}
+					});					
+				});
+			} // end of main function
+
+			$("#all").click(function(event){ // status online click event
+
+				$(".well").remove(); // remove well so that it doesnt append anything more
+
+				for(var i=0;i<Object.keys(array).length;i++){ // creating well and divs for channels
+					//var random= Math.floor(Math.random()*i)+1;
+					//console.log(random);
+					$('#col').append('<div id="r'+ i +'"></div>');// Create 10 Div element  with id r1 to r10
+					$("#r"+encodeURIComponent(i)).addClass("well");// Setting div css margin
+					$(".well").css("background-color","gray");
+					$(".well").css("margin","0px");
+					$(".well").css("height","auto");
+					$("#r"+encodeURIComponent(i)).append("<span style="+"font-size:20px"+">"+array[i]+"<span>");
+					
+				}
+				$(main);// calls main event that is whole page function
+			});
+
+
+			$("#offline").click(function(event){ // status offlineclick event
+
+				test=[]; // emptying array always when clicked and executes further below:
+				$(".well").remove(); 
+					$.each(array, function(i, a1val) {
+
+						if ($.inArray(a1val, onlineArray) === -1) {   // find the unmatched from online array and our objects values
+								        test.push(a1val);
+						}
+					});
+
+				    for(var i=0;i<test.length;i++){
+						$('#col').append('<div id="r'+ i +'"></div>');// Create 10 Div element  with id r1 to r10
+						$("#r"+encodeURIComponent(i)).addClass("well");// Setting div css margin
+						$(".well").css("background-color","gray");
+						$(".well").css("margin","0px");
+						$(".well").css("height","auto");
+						$("#r"+encodeURIComponent(i)).html("<span style="+"font-size:20px"+">"+test[i]+"<span>");	
+						$("#r"+i).append('<span style="float:right">Offline <span style="color:red"><i class="fa fa-exclamation" aria-hidden="true"></i></span></span>');
+					}		
+			});
+
+
+			$("#online").click(function(){ // status online click event starts here
+
+				$(".well").remove();
+				for(var j=0;j<Object.keys(array).length;j++){
+					for(var k=0;k<onlineArray.length;k++){
+						if(array[j]===onlineArray[k]){
+							$('#col').append('<div id="r'+ j +'"></div>');// Create 10 Div element  with id r1 to r10
+							$("#r"+encodeURIComponent(j)).addClass("well");// Setting div css margin
+							$(".well").css("background-color","gray");
+							$(".well").css("margin","0px");
+							$(".well").css("height","auto");
+							$("#r"+encodeURIComponent(j)).html("<span style="+"font-size:20px"+">"+array[j]+"<span>");
+
+						}
+					}
+				}
+					$.getJSON("https://api.twitch.tv/kraken/streams/",function(e){
+						for(var i=0;i<e.streams.length;i++){
+							for(var k=0;k<onlineArray.length;k++){
+									if(array[i]===onlineArray[k]){
+										if((onlineArray[k])=== $("#r"+i).text()){// if texts in well matches to the channels that are online prints below:
+											$("#r"+i).append("<br>"+e.streams[i].channel.status+"<span style="+"float:right"+">Online <img src="+"http://www.customerparadigm.com/images/seo/Green-Box.jpg"+" height="+15+"px"+" width="+15+"px"+"></span>"); // and prints status of the channel
+											//$(("#r"+i+":contains("+array[i]+")")).("<a href="+"https://www.twitch.tv/"+$("#r"+i).text()+"></a>");
+
+											$(("#r"+i+":contains("+array[i]+")")).html(function(_, text) { // function to wrap string to anchor (url link) only to the channel 
+											    var url = text.match(array[i]);
+
+											    $.each(url, function(i, v) {
+											        text = text.replace(v, '<a target="_blank" href=https://www.twitch.tv/' + v + '>' + v + '</a>');        
+											    });
+											    return text;
+											});// function to wrap anchor ends here
+
+										}
+										
+									}
+
+							}
+									
+						}
+					});
+			}); // online click events ends here
+			
+			$("#wiki,#game,#weather,#head").hover(function(){ // navbar right menu css change
+				$(this).css("background-color","gray");
+			},function(){
+				$(this).css("background-color","");
+			});
+
+			$("#sidebar-button").hover(function(){ // side bar option, css change
+				$(this).css("color","green");
+			},function(){
+				$(this).css("color","white");
+			});
+
+		}); // document ready function ends here
+	</script>
+
+</head>
+<body>
+	
+	<div class="container-fluid" id="home">
+		<!-- Nabvar Starts here-->
+	    <nav  id="nav" class="nav navbar-inverse navbar-transparent navbar-fixed-top" style="background-color:rgba(0,0,0,0.8);"> <!-- for navigation bar-->
+	        <div id="name" class="navbar-header">
+	        
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNav">
+	                <span class="icon-bar"></span> <!-- horizontal bar line in toggle button in navbar-->
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+	            <a id="head" style="color:white" class="navbar-brand"><i style="color:aqua;font-size:20px;" class="fa fa-home" aria-hidden="true"></i> Hari Adhikari</a>
+	        </div>
+	        <div class="collapse navbar-collapse" id="myNav">
+	    
+	            <ul id="box" class="nav navbar-nav navbar-right" style="margin-right:10px">
+	                <li>
+	                    <a id="weather"  data-toggle="collapse" data-target=".navbar-collapse" style="color:white" href="http://codepen.io/haria/full/dMWZWq/" target="_blank">Check Weather 
+	                        <i style="font-size:22px;"class="fa fa-cloud"></i>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a id="wiki" data-toggle="collapse" data-target=".navbar-collapse" style="color:white" href="http://codepen.io/haria/full/jqaRMg/" target="_blank">Wikipedia 
+	                        <i style="font-size:20px"class="fa fa-wikipedia-w"></i>
+	                    </a>
+	                </li>
+	                <li><!-- Directs to Color Game Metropolia-->
+	                    <a id="game" data-toggle="collapse" data-target=".navbar-collapse" style="color:white" href="http://users.metropolia.fi/~haria/mobile%20programming.html" target="_blank">Play Game
+	                        <i style="font-size:22px;color:red" class="fa fa-gamepad" aria-hidden="true"></i>
+	                    </a>
+	                </li>
+	            </ul>
+	    
+	        </div>
+	    </nav> <!-- end of navbar-->
+
+		<div class="jumbotron">  <!-- Jumbotron Starts here-->
+					<!-- THIS IS THE LINK FOR SIDR FUNCTION --> 		
+			<a id="simple-menu" href="#sidr" style="text-decoration:none"><button style="background-color:black" class="btn btn-default"><span id="sidebar-button" style="color:white;font-size:18px">Online Status<i style="color:green"class="fa fa-check" aria-hidden="true"></i></span></button></a>
+			<div id="sidr">
+			  <!-- Your content -->
+			  	<ul>
+				    <li id="all"><a href="#">All Streams</a></li>
+				    <li id="online"><a href="#">Online <img src="http://www.customerparadigm.com/images/seo/Green-Box.jpg" height="15px" width="15px"></a></li>
+				    <li id="offline"><a href="#">Offline <img src="http://www.color-hex.com/palettes/1051.png" height="15px" width="15px"></a></li>
+			    </ul>
+			</div>
+	
+			<!--  THIS IS THE CODE FOR THE SIDR FUNCTION -->
+			<script src="https://cdn.jsdelivr.net/jquery/2.2.0/jquery.min.js"></script>
+			<!-- Including the Sidr JS -->
+			<script src="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/jquery.sidr.min.js"></script>
+			<script>// for sidr
+				$(document).ready(function() {
+				  	//$('#simple-menu').sidr(); // This is also corect
+				  	$('#simple-menu').sidr({
+						//name: 'sidr-left',
+						side: "left"
+					});
+
+				  	$("body").click(function(e) { // when click the body, sidr closes
+				  		var container = $("#sidr");
+				  		if (!container.is(e.target) // if the target of the click isn't the container...
+        						&& container.has(e.target).length === 0){ // ... nor a descendant of the container
+    							$.sidr('close', 'sidr');
+				  	 	}
+				  	 	console.log($("#sidr").width());
+
+				  	});
+
+				  	$("#online,#all,#offline").click(function(e) { // when click the options online,offline,all, sidr closes
+				  		$.sidr('close', 'sidr');
+				  	});
+				  	if($(document).width()<400){
+				  		$("#sidr").css("width","210px"); // resizing the width in mobile view
+				  	}	
+
+				});		
+			</script> <!--sidr js closes here--> 
+
+			<div id="header" style="background-size:cover;background-repeat:no-repeat">
+
+				<br><br><br><br>
+				<center><h1 id="heading"style="display:inline;z-index:-1;margin-top:0px">Twitch Streamer</h1></center>
+			</div>
+
+			<div id="stream"  style="height:400;width:100%">
+				<div id="col"> <!-- here comes the channels and wells-->
+					<p></p>
+					<h3></h3>
+				</div>
+			</div>
+			
+		</div>
+		<center><h5>Copyright:&copy; <a href="http://codepen.io/haria/full/ZWYjGL" target="_blank" style="text-decoration:none;font-size:22px">Haria</a></h5></center>
+
+	</div>
+	
+</body>
+</html>
