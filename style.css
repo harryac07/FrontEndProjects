@@ -1,0 +1,38 @@
+.well{
+	background-color:#000000;
+	margin-left:250px;
+	margin-right:250px;
+	height: auto;
+}
+button{
+	height:65px;
+	max-width:100px;
+	outline: none;
+	border: 0;
+}
+.jumbotron{
+	background-color:inherit;
+	margin-left:250px;
+	margin-right:250px;
+	color:red;
+}
+.jumbotron button{ 
+	max-height:80px;
+	max-width:120px;
+}
+
+
+#footer{
+	position:absolute;
+	bottom:0;
+	width:100%;
+
+}
+
+h1{
+	color:red;
+	font-size:60px;
+}
+a{
+	text-decoration: none;
+}

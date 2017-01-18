@@ -1,0 +1,50 @@
+h1{
+	text-align: center;
+	margin-top: 10px;
+	font-size: 50px;
+	
+}
+a{
+	text-decoration: none;
+}
+h2{
+	text-align: center;
+	font-size: 55px;
+	 text-shadow: 2px 2px green;
+
+}
+body{
+	background-color: black;
+	color: white;
+}
+.jumbotron{
+	background-color: gray;
+	background-repeat: no-repeat;
+	min-height: 300px !important;
+
+	margin: 0 50px 0 50px;
+
+}
+#container{	
+	margin: auto;
+	border: none;
+}
+button{
+	font-weight:bold;
+}
+#demo{
+
+}
+p{
+	color:white;
+	font-size: 25px;
+	font-family: sans-serif;
+}
+#paragraph{
+	font-weight: bold;
+	font-size: 24px;
+	text-align: center;
+}
+.ui-panel{
+	max-width:15em;
+}

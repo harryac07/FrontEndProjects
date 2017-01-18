@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<div data-role="page"  class="ui-content" id="home" style="background-color:gray">
+	<div data-role="header" data-position="inline">
+		<h1 style="font-size:18px;font-weight:bold">Lab6 Ex2</h1>
+		<a href="#home" data-icon="home">Home</a>
+	</div>
+	<div data-content-theme="b" data-role="collapsible">
+		<h1>Mobile Collections</h1>
+		<p>Here are specifications of 3 mobile phones.<br>Click to view specifications of mobile you liked.</p>
+	</div>
+	<div class="ui-content" data-theme="a" data-content-theme="b">
+		<ul data-role="listview" data-insert="true" data-theme="b">
+			<li><a href="#iphone6s"  data-transition="flip"><img src="http://i-cdn.phonearena.com/images/articles/195250-thumb/iphonee.jpg">Iphone 6S</a></li>
+			<li><a href="#lg"  data-transition="flip"><img src="http://d38v16rqg5mb6e.cloudfront.net/wp-content/uploads/2015/07/LG-G-Stylo.jpg">LG G4S</a></li>
+			<li><a href="#samsung" data-transition="flip"><img src="http://www.samsung.com/global/galaxy/galaxy-s6-edge-plus/design/images/galaxy-s6-edge-plus_design_edge-ux_oncircle.jpg">Samsung Edge</a></li>
+		</ul>
+	</div>
+	
+	<div data-role="footer">
+		<h1>Solution</h1>
+	</div>
+</div> 
+
+<div data-role="page" data-dialog="true" id="iphone6s" data-theme="b"> <!-- dialogue box starts here: for iphone 6s-->
+	 <div data-role="header">
+		<h1>Iphone 6S</h1>
+	 </div>
+
+	 <div data-role="main" class="ui-content">
+	   <button class="btn btn-default" > <a href="#home" data-transition="flip" data-direction="reverse" class="ui-icon-home ui-btn-icon-left">Go to Home</a></button>
+		<p style="color:black"> Iphone 6S is a powerful phone<br> OS: OS 9, upgradable to iOS 9.3<br>
+			Chipset	: Apple A9<br>
+			CPU : Dual-core 1.84 GHz Twister<br>
+			GPU	: PowerVR GT7600 (six-core graphics).<br></p>
+	 </div>
+
+	 <div data-role="footer">
+		<button data-theme="a" class="btn btn-default"><a href="http://www.gsmarena.com/apple_iphone_6s-7242.php" target="_blank">Click for more</a></button>
+	 </div>
+</div> 
+
+<div data-role="page" data-dialog="true" id="lg" data-theme="b"> <!-- dialogue box starts here: for LG g4S-->
+	 <div data-role="header">
+		<h1>LG G4s</h1>
+	 </div>
+
+	 <div data-role="main" class="ui-content">
+	   <button class="btn btn-default"> <a href="#home"  data-transition="flip" data-direction="reverse" class="ui-icon-home ui-btn-icon-left">Go to Home</a></button>
+		<p style="color:black"> Lg G4s is a  powerful phone<br> OS: Android OS, v5.1.1 (Lollipop)<br>
+			Chipset	: Qualcomm MSM8939 Snapdragon 615<br>
+			CPU : 	Quad-core 1.5 GHz Cortex-A53 & quad-core 1.0 GHz Cortex-A53<br>
+			GPU	: Adreno 405.<br></p>
+	 </div>
+
+	 <div data-role="footer">
+		<button data-theme="a" class="btn btn-default"><a href="http://www.gsmarena.com/lg_g4_beat-7363.php" target="_blank">Click for more</a></button>
+	 </div>
+</div> 
+
+<div data-role="page" data-dialog="true" id="samsung" data-theme="b"> <!-- dialogue box starts here: for Samsung Edge-->
+	 <div data-role="header">
+		<h1>Samsung Edge</h1>
+	 </div>
+
+	 <div data-role="main" class="ui-content">
+	   <button class="btn btn-default"> <a href="#home"  data-transition="flip" data-direction="reverse" class="ui-icon-home ui-btn-icon-left">Go to Home</a></button>
+		<p style="color:black"> Samsung Edge 7 is a  powerful phone<br> OS: Android OS, v6.0 (Marshmallow))<br>
+			Chipset	: Qualcomm MSM8996 Snapdragon 820<br>
+			CPU : 	Dual-core 2.15 GHz Kryo & dual-core 1.6 GHz Kryo<br>
+					Quad-core 2.3 GHz Mongoose + quad-core 1.6 GHz Cortex-A53<br>
+			GPU	: Adreno 530.<br></p>
+	 </div>
+
+	 <div data-role="footer">
+		<button data-theme="a" class="btn btn-default"><a href="http://www.gsmarena.com/lg_g4_beat-7363.php" target="_blank">Click for more</a></button>
+	 </div>
+</div> 
+
+</body>
+</html>

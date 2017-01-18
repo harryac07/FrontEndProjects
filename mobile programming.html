@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<html>
+<head>
+<title>Mobile Programming</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!--device ko anusaar device ko width laai lii vaneko-->
+<!-- Include jQuery Mobile stylesheets -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"><!-- Jquery Mobile-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <!--bootstrap link --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> <!-- jquery --> 
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script><!-- Include the jQuery Mobile library -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> <!-- bootstrap --> 
+<script src="page2.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="style.css" /> <!-- link to css-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/> <!-- Font Awesome Icons -->
+
+</head>
+<body>
+	<div data-role="page" data-dialogue="true">
+		<div data-role="header"> <!-- header jquery mobile-->
+			<h1 style="font-size:20px;font-weight:bold;color:black" id="playGame">Play Game</h1>
+			<a href="http://users.metropolia.fi/~haria/new.html" id="gohome" class="ui-btn ui-icon-home ui-btn-icon-left ui-alt-icon">Go Home</a>
+			<a id="gameinfo" href="#myPopup" data-rel="popup"  class="ui-btn ui-icon-info ui-btn-icon-right ui-alt-icon">Game Info</a>
+
+		</div>
+		<div class="container-fluid" id="home" data-role="content"> <!-- main jquery mobile-->
+			<div data-role="header ui-content" style="display:relative">
+				<center><h1 style="color:red;font-size:50px">G<span style="color:green">a</span>m<span style="color:green">e</span> o<span style="color:blue">f</span> C<span style="color:black">o</span><span style="color:yellow">l</span><span style="color:gray">o</span><span style="color:green">r</span><span style="color:purple">s</span></h1></center>
+					<div  class="text-center">
+						<h4 style="color:black; text-shadow:none"id="best"></h4>
+					</div>
+				<div id="grid-box"class="text-center" style=""> <!--Jquery Mobile for grid-->
+					<h4> Score: <span id="runningScore">0</span></h4>
+				</div>
+			</div>
+
+			<h3 id="highScore"></h3>
+			<div class="well text-center ui-content" id="game">
+				<h3 id="hello"></h3>
+				<button class="btn btn-default btn-lg"></button> <!-- Demo Button -->
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+				<button class="btn btn-default btn-lg"></button>
+
+			</div>
+			<div class="jumbotron text-center">
+				<h2 id="score"></h2>
+			</div>
+			<div data-role="popup" id="popup"  data-position-to="window" data-transition="turn" class="ui-content">
+				<h1 style="color:black;background-color:gray;font-size:40px">Congratulations!! You have a set a new High Score.</h1>
+			</div>
+			<div data-role="popup" id="myPopup" data-position-to="window" class="ui-content" data-overlay-theme="b">
+				<h3>Please Read and understand the Game</h3>
+		      <p>This is a Luck Game designed to Check How luck is favouring you.<br>
+		      	Click two boxes. If both boxes has same color, it changes its background color to matched colors and you increase your score. If not, it will just disappears and turn in dark black.<br>
+		      	If you get 8 points or more, you pass the game otherwise you failed. 
+		      	<br>
+		      	<br>
+		      	Total Score: 18<br>
+		      	Minimum to Pass: 8<br>
+		      	<br>
+		      	Try again until you score 8 points at least. 
+		      	<br>
+		      	Good Luck!!!
+
+		      </p>
+		    </div>
+
+		</div>
+		<div id="footer" data-role="footer" class="text-center ui-content" ><!-- footer jquery mobile-->
+			<h3>CopyRight: &copy; Mobile Programming</h3>
+		</div>
+	</div>
+
+</body>
+</html>

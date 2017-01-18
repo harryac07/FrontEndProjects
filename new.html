@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<html>
+<head>
+<title>New Mobile Programming</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!--device ko anusaar device ko width laai lii vaneko-->
+<!-- Include jQuery Mobile stylesheets -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"><!-- Jquery Mobile-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <!--bootstrap link --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> <!-- jquery --> 
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script><!-- Include the jQuery Mobile library -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> <!-- javascript --> 
+<link rel="stylesheet" type="text/css" media="all" href="new.css" /> <!-- link to css-->
+<script src="page.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/> <!-- Font Awesome Icons -->
+
+<script>
+</script>
+</head>
+	<body>
+		<div data-role="page" id="home" data-theme="b">
+		   <div data-role="panel" id="pushPanel" data-display="overlay" data-position-fixed="true" data-theme="b"> <!-- panel starts here-->
+		   		<div data-role="header">
+					<h1 style="" data-position="fixed">Welcome!</h1>
+				</div>
+				<div data-role="main" class="ui-content">
+
+					<ul data-role="listview" data-insert="true" data-theme="a" data-content-theme="b">
+						<li><a href="#game" data-transition="flip">Metropolia </a></li>
+				      	<li><a id="playgame" href="http://users.metropolia.fi/~haria/mobile%20programming.html" data-transition="flip"><span style="color:green"><strong>Play Game</strong></span></a></li>
+				    </ul>
+				</div>
+		    	<div id="button1" class="text-center"> <!-- contact buttons in panel-->
+			      	<button  id="btn1" class="btn"><a href="https://www.facebook.com/hurriee" target="_blank"><span class="fa fa-thumbs-up "></span> FB Hari</a></button>
+			      	<button  id="btn3"class="btn"><a href="https://www.linkedin.com/in/hari-adhikari-6a149098?trk=hp-identity-name" target="blank"><i class="fa fa-linkedin"></i> Linkedin</a></button>
+			      	<button  id="btn4"class="btn"><a href="http://www.freecodecamp.com/fcca59ab385" target="blank"><img src="https://pbs.twimg.		com/profile_images/692531829287567360/ytP7U362.png" height="20px" width="20px"> Freecodecamp</a></button>
+			    </div>
+		    	<div id="footer" data-role="footer" class="text-center ui-content" data-position="fixed"><!-- footer jquery mobile-->
+					<h4> &copy; Mobile Programming</h4>
+				</div>
+		  </div> <!-- panel ends here-->
+  
+			
+			<div data-role="header" data-position="fixed" data-theme="a"> <!-- header jquery mobile-->
+				<h1 style="font-size:20px">Mobile App</h1 >
+			</div>
+			<div data-role="content" class="ui-content">
+				<a href="#pushPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">More</a>
+					<br>
+				<h2  style=" border-bottom: 1px solid white;border-"class="text-center">Today Weather</h2>
+				<br>
+				<div >
+					<div class="col-sm-5 text-center">
+						<h1 style="font-size:45px" id="location"></h1>
+						<h1 style="font-size:30px" id="weather"></h1>
+				
+					</div >
+					<div id="weatherimage" class="col-sm-4">
+						<img class="img-responsive"src="http://www.animatedimages.org/data/media/148/animated-weather-image-0009.gif" height="250px" width="250px" style="border:0;border-radius:50%">
+						
+					</div>
+					<div id="container" class="col-sm-3 text-center">
+						<p id="temp" style="font-weight:bold"></p>
+						
+					</div>
+				</div>
+
+			</div>
+
+
+			
+
+			<div id="footer" data-role="footer" data-theme="a" class="text-center ui-content" data-position="fixed" style=" position:fixed;bottom:0;"><!-- footer jquery mobile-->
+				<h3>CopyRight: &copy; Mobile Programming</h3>
+			</div>
+		</div> <!-- End of main page-->
+				<div data-role="page" data-dialog="true" id="game" data-theme="b"> <!-- dialogue box starts here: contact-->
+						 <div data-role="header">
+							<h1>Contact US</h1>
+						 </div>
+
+						 <div data-role="main" class="ui-content">
+						   <button class="btn btn-default" > <a id="gohomeDialogue" href="#home" data-transition="flip" data-direction="reverse" class="ui-icon-home ui-btn-icon-left">Go to Home</a></button>
+							<p style="color:black;display:inlineM;font-size:24px"> Hari Adhikari <a href="http://users.metropolia.fi/~haria" target="blank">Haria</a><br></p>
+							<p style="color:black;display:inline;font-size:24px"> Saroj Banjara <a href="http://users.metropolia.fi/~sarojba" target="blank">Sarojba</a></p>
+						 </div>
+
+						 <div data-role="footer">
+							<button data-theme="a" class="btn btn-default"><a id="dialoguePlayGame" href="http://users.metropolia.fi/~haria/mobile%20programming.html" target="_blank">Play Game</a></button>
+						 </div>
+				</div> 
+
+			
+
+
+	</body>
+</html>
